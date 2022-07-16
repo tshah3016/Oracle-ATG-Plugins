@@ -1,0 +1,133 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.tshah.atg</groupId>
+    <artifactId>ATG-Plugins</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <!-- Version of atg we are using. This is used to pull dependencies. -->
+        <atg.version>11.3.2</atg.version>
+        <!-- Path to root of ATG installation. -->
+        <!--suppress UnresolvedMavenProperty -->
+        <atg.root>${env.DYNAMO_ROOT}</atg.root>
+        <!-- This is the top level ATG module that will be created. -->
+        <atg.root.module.home>${atg.root}/Core-Plugins</atg.root.module.home>
+        <module.dir.name>BCCTools</module.dir.name>
+        <!-- This is used by submodules to determine where they go on the filesystem. -->
+        <atg.module.home>${atg.root.module.home}/Functional-Http-Client</atg.module.home>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Our MANIFEST.MF in EStore contains Build-Date: ${timestamp} -->
+        <!-- Filtering will take this value and replace the variable in the MANIFEST when maven executes -->
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+        <!-- Used to populate ATG-Build in MANIFEST.MF. You can use this to track different code versions. -->
+        <!-- This will show up as Build Number in /dyn/admin under what's running -->
+        <build.number>123</build.number>
+
+    </properties>
+
+    <modules>
+        <module>FunctionalHttpClient</module>
+    </modules>
+
+    <!-- OOTB Oracle Commerce dependencies -->
+    <dependencies>
+        <dependency>
+            <groupId>atg</groupId>
+            <artifactId>ADC-classes</artifactId>
+            <version>${atg.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>atg</groupId>
+            <artifactId>DAS-classes</artifactId>
+            <version>${atg.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>atg</groupId>
+            <artifactId>DAS-servlet</artifactId>
+            <version>${atg.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>atg</groupId>
+            <artifactId>DASUI-uiclasses</artifactId>
+            <version>${atg.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>atg</groupId>
+            <artifactId>DCS-classes</artifactId>
+            <version>${atg.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>atg</groupId>
+            <artifactId>DPS-classes</artifactId>
+            <version>${atg.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>atg</groupId>
+            <artifactId>DSS-classes</artifactId>
+            <version>${atg.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.10.2</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>1.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.2.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.2.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.2.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>2.19.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.19.0</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+</project>
