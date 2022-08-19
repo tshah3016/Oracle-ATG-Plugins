@@ -47,6 +47,7 @@ public class CloseableHttpClient implements HttpClientProxy {
     @Override
     public <T extends ServiceResponse> Optional<T> executeRequest(HttpMethodProxy method,
                                                                   ServiceContext requestContext) {
+        System.out.println("Invoked execute");
         T response = null;
         CloseableHttpResponse result = null;
         try (HttpMethodProxy closableMethod = method) {

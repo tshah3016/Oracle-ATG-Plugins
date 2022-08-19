@@ -45,7 +45,7 @@ public class RequestUtils {
 
     public static StringEntity createSoapEnvelope(ServiceRequest.SoapServiceRequest soapRequest,
                                                   SoapHeader soapHeader) {
-        String soap = null;
+        String soap;
         try {
             SOAPMessage soapMessage = MessageFactory.newInstance().createMessage();
             SOAPPart soapPart = soapMessage.getSOAPPart();
@@ -64,7 +64,7 @@ public class RequestUtils {
             soapMessage.writeTo(outputStream);
             soap = outputStream.toString();
         } catch (SOAPException | JAXBException | ParserConfigurationException | IOException e) {
-            throw new IllegalArgumentException(e.getMessage());
+            throw new RequestExecutionException(e.getMessage());
         }
         return new StringEntity(soap, ContentType.create("text/xml", HTTPConstants.UTF8));
 
@@ -142,6 +142,9 @@ public class RequestUtils {
         }
         if (URI.create(uri).isAbsolute()) {
             return uri;
+        }
+        if(service.getHostAndPort()==null){
+            throw new RequestExecutionException("Error executing request for relative URI and missing HostAndPort");
         }
         return getStringBuilder().append(service.getProtocol())
                 .append(HTTPConstants.PROTOCOL_SEP)

@@ -11,9 +11,7 @@ public class HttpClientInitializer {
             T webServiceConfigurationManager) {
 
         HttpClientBuilder httpClientBuilder = HttpClients.custom();
-
         webServiceConfigurationManager.getClientCustomizer().accept(httpClientBuilder);
-
         return new CloseableHttpClient(httpClientBuilder.build());
 
     }

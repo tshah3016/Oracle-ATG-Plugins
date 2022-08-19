@@ -19,7 +19,7 @@ public @interface Service {
 
     @NotNull String name();
 
-    @NotNull String hostAndPort();
+    String hostAndPort();
 
     String uri() default "";
 
@@ -31,7 +31,7 @@ public @interface Service {
 
     @NotNull Class<? extends ServiceResponse> responseClass();
 
-    @NotNull Class<? extends ServiceResponse.ServiceError> errorClass();
+    Class<? extends ServiceResponse.ServiceError> errorClass();
 
     int[] successResponseCodes() default {HTTPConstants.OK};
 

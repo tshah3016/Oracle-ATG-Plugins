@@ -81,12 +81,7 @@ public class CloseableHttpMethod implements HttpMethodProxy {
 
     @Override
     public void setURI(String uri) {
-        try {
-            httpMethod.setURI(new URIBuilder(uri).build());
-        } catch (URISyntaxException e) {
-            throw new IllegalArgumentException("Invalid Uri " + uri);
-        }
-
+        httpMethod.setURI(URI.create(uri));
     }
 
     @Override
